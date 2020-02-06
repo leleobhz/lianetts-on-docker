@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  lianetts:
+    privileged: true
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: lianetts
+    devices:
+      - /dev/snd
+    environment:
+      - DISPLAY=unix:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./dados:/dados
+#    entrypoint: /bin/bash -x docker-entrypoint.sh
+    command: -g 0.75 /dados/teste.wav "Ola! Somos a Zenith Tecnologia."
